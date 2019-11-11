@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{491AB49F-5343-44A6-83F3-0F4DF253BC25}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AppG12019</RootNamespace>
+    <AssemblyName>AppG12019</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>iconfinder_09_Calculator.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0-preview2-19525-03\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0-preview2-19525-03\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContactApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContactApp.Designer.cs">
+      <DependentUpon>ContactApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContactAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContactAdd.Designer.cs">
+      <DependentUpon>ContactAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContactModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContactModify.Designer.cs">
+      <DependentUpon>ContactModify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entity\AppG1DBContext.cs" />
+    <Compile Include="DAL\Entity\Contact.cs" />
+    <Compile Include="DAL\Entity\DanhBa.cs" />
+    <Compile Include="DAL\Entity\Nhom.cs" />
+    <Compile Include="DAL\Entity\QuaTrinhHocTap.cs" />
+    <Compile Include="DAL\Entity\SinhVien.cs" />
+    <Compile Include="formQuaTrinhHocTapChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formQuaTrinhHocTapChiTiet.Designer.cs">
+      <DependentUpon>formQuaTrinhHocTapChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formThongTinSinhVienChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formThongTinSinhVienChiTiet.Designer.cs">
+      <DependentUpon>formThongTinSinhVienChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThongTinhSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThongTinhSinhVien.Designer.cs">
+      <DependentUpon>frmThongTinhSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTinhToanCoBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTinhToanCoBan.Designer.cs">
+      <DependentUpon>frmTinhToanCoBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911110805080_abc.cs" />
+    <Compile Include="Migrations\201911110805080_abc.designer.cs">
+      <DependentUpon>201911110805080_abc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanLiDanhBa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLiDanhBa.Designer.cs">
+      <DependentUpon>QuanLiDanhBa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThemLienLac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemLienLac.Designer.cs">
+      <DependentUpon>ThemLienLac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThemNhom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemNhom.Designer.cs">
+      <DependentUpon>ThemNhom.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ContactApp.resx">
+      <DependentUpon>ContactApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactAdd.resx">
+      <DependentUpon>ContactAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactModify.resx">
+      <DependentUpon>ContactModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formQuaTrinhHocTapChiTiet.resx">
+      <DependentUpon>formQuaTrinhHocTapChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formThongTinSinhVienChiTiet.resx">
+      <DependentUpon>formThongTinSinhVienChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThongTinhSinhVien.resx">
+      <DependentUpon>frmThongTinhSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTinhToanCoBan.resx">
+      <DependentUpon>frmTinhToanCoBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911110805080_abc.resx">
+      <DependentUpon>201911110805080_abc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="QuanLiDanhBa.resx">
+      <DependentUpon>QuanLiDanhBa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemLienLac.resx">
+      <DependentUpon>ThemLienLac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemNhom.resx">
+      <DependentUpon>ThemNhom.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DATA\Contact.txt" />
+    <Content Include="DATA\dataStudent.txt" />
+    <Content Include="DATA\learningHistory.txt" />
+    <Content Include="iconfinder_09_Calculator.ico" />
+    <None Include="Resources\back-arrow.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\iconfinder_130-man-student-2_3099383.png" />
+    <None Include="Resources\student.png" />
+    <None Include="Resources\trump.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.targets')" />
+</Project>
