@@ -12,7 +12,6 @@ namespace AppG12019.DAL.Entity
 {
     public class SinhVien
     {
-        [Key]
         public string maSinhVien { get; set; }
         public string ho { get; set; }
         public string ten { get; set; }
@@ -37,8 +36,8 @@ namespace AppG12019.DAL.Entity
                 gioiTinh = SEX.Male,
                 queQuan = "TTHue"
             };
-            //sinhVien.ListQuaTrinhHocTap = QuaTrinhHocTap.getList(maSinhVien);
-            sinhVien.ListQuaTrinhHocTap = QuaTrinhHocTap.getListFromDB(maSinhVien);
+            sinhVien.ListQuaTrinhHocTap = QuaTrinhHocTap.getList(maSinhVien);
+            //sinhVien.ListQuaTrinhHocTap = QuaTrinhHocTap.getListFromDB(maSinhVien);
             return sinhVien;
         }
 
@@ -73,40 +72,40 @@ namespace AppG12019.DAL.Entity
             return null;
         }
 
-        public static SinhVien getFromDB(string maSinhVien)
-        {
-            return new AppG1DBContext().SinhVienDbSet.Where(e => e.maSinhVien == maSinhVien).FirstOrDefault();
-        }
+      //  public static SinhVien getFromDB(string maSinhVien)
+      //  {
+     //       return new AppG1DBContext().SinhVienDbSet.Where(e => e.maSinhVien == maSinhVien).FirstOrDefault();
+     //   }
 
-        public static void add(SinhVien sv)
-        {
-            var db = new AppG1DBContext();
-            db.SinhVienDbSet.Add(sv);
-            db.SaveChanges();
-        }
+       // public static void add(SinhVien sv)
+       // {
+       //     var db = new AppG1DBContext();
+       //     db.SinhVienDbSet.Add(sv);
+       //     db.SaveChanges();
+      //  }
 
-        public static void remove(SinhVien sv)
-        {
-            var db = new AppG1DBContext();
-            var objSV = db.SinhVienDbSet.Where(e => e.maSinhVien == sv.maSinhVien).FirstOrDefault();
-            if (objSV != null)
-            {
-                db.SinhVienDbSet.Remove(objSV);
-            }
-            db.SaveChanges();
-        }
+       // public static void remove(SinhVien sv)
+       // {
+        //    var db = new AppG1DBContext();
+       //     var objSV = db.SinhVienDbSet.Where(e => e.maSinhVien == sv.maSinhVien).FirstOrDefault();
+      //      if (objSV != null)
+      //      {
+            //    db.SinhVienDbSet.Remove(objSV);
+       //     }
+       //     db.SaveChanges();
+       // }
 
-        public static void edit(SinhVien sv)
-        {
-            var db = new AppG1DBContext();
-            var objSV = db.SinhVienDbSet.Where(e => e.maSinhVien == sv.maSinhVien).FirstOrDefault();
-            if (objSV != null)
-            {
-                objSV.ngaySinh = sv.ngaySinh;
-                objSV.queQuan = sv.queQuan;
-            }
-            db.SaveChanges();
-        }
+       // public static void edit(SinhVien sv)
+       //// {
+         //   var db = new AppG1DBContext();
+        //    var objSV = db.SinhVienDbSet.Where(e => e.maSinhVien == sv.maSinhVien).FirstOrDefault();
+       //     if (objSV != null)
+        //    {
+        //        objSV.ngaySinh = sv.ngaySinh;
+        //        objSV.queQuan = sv.queQuan;
+       //     }
+       //     db.SaveChanges();
+       // }
 
     }
 }

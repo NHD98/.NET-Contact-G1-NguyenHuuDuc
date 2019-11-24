@@ -19,7 +19,8 @@ namespace AppG12019
             InitializeComponent();
             dgvNhom.AutoGenerateColumns = false;
             dgvDanhBa.AutoGenerateColumns = false;
-            List<Nhom> listNhom = Nhom.getNhom();
+            //List<Nhom> listNhom = Nhom.getNhom();
+            List<Nhom> listNhom = Nhom.getNhomFromDB();
             bdsNhom.DataSource = listNhom;
             dgvNhom.DataSource = bdsNhom;
         }
@@ -27,9 +28,15 @@ namespace AppG12019
         private void dgvNhom_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string tenNhom = (string)dgvNhom.CurrentCell.Value;
-            List<DanhBa> list = DanhBa.getDanhBaTheoNhom(tenNhom);
-            bdsDanhBa.DataSource = list;
-            dgvDanhBa.DataSource = bdsDanhBa;
+            if (tenNhom != null)
+            {
+                //Nhom nhom = Nhom.getNhomByName(tenNhom);
+                Nhom nhom = Nhom.getNhomFromDBByName(tenNhom);
+                //List<DanhBa> list = DanhBa.getDanhBaTheoNhom(nhom.maNhom);
+                List<DanhBa> list = DanhBa.getDanhBaFromDBTheoNhom(nhom.maNhom);
+                bdsDanhBa.DataSource = list;
+                dgvDanhBa.DataSource = bdsDanhBa;
+            }
         }
 
         private void dgvDanhBa_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -49,35 +56,34 @@ namespace AppG12019
         }
         private void btnXoaLienLac_Click(object sender, EventArgs e)
         {
-            string tenNhom = (string)dgvNhom.CurrentRow.Cells[0].Value;
-            string tenGoi = (string)dgvDanhBa.CurrentRow.Cells[0].Value;
-            string email = (string)dgvDanhBa.CurrentRow.Cells[1].Value;
             string sdt = (string)dgvDanhBa.CurrentRow.Cells[2].Value;
-            string path = Application.StartupPath + @"/DATA/DanhBa.txt";
-            string[] lines = File.ReadAllLines(path);
-            File.WriteAllText(path, "");
-            for (int i = 0; i < lines.Length; i++)
-            {
-                string[] temp = lines[i].Split(new char[] { '#' });
-                if (temp[0].Equals(tenNhom) && temp[1].Equals(tenGoi) && temp[2].Equals(email) && temp[3].Equals(sdt))
-                {
-                }
-                else
-                {
-                    File.AppendAllText(path, lines[i] + System.Environment.NewLine, Encoding.UTF8);
-                }
-            }
+            DanhBa.xoaDanhBaFromDB(sdt);
+
+            refreshList();
+
+            // string tenNhom = (string)dgvNhom.CurrentRow.Cells[0].Value;
+            // string tenGoi = (string)dgvDanhBa.CurrentRow.Cells[0].Value;
+            // string email = (string)dgvDanhBa.CurrentRow.Cells[1].Value;
+            //string sdt = (string)dgvDanhBa.CurrentRow.Cells[2].Value;
+            // string path = Application.StartupPath + @"/DATA/DanhBa.txt";
+            // string[] lines = File.ReadAllLines(path);
+            // File.WriteAllText(path, "");
+            // for (int i = 0; i < lines.Length; i++)
+            //  {
+            //    string[] temp = lines[i].Split(new char[] { '#' });
+            //    if (temp[0].Equals(tenNhom) && temp[1].Equals(tenGoi) && temp[2].Equals(email) && temp[3].Equals(sdt))
+            //    {
+            //   }
+            //    else
+            //   {
+            //        File.AppendAllText(path, lines[i] + System.Environment.NewLine, Encoding.UTF8);
+            //    }
+            //}
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            List<Nhom> listNhom = Nhom.getNhom();
-            bdsNhom.DataSource = listNhom;
-            dgvNhom.DataSource = bdsNhom;
-            string tenNhom = (string)dgvNhom.CurrentCell.Value;
-            List<DanhBa> list = DanhBa.getDanhBaTheoNhom(tenNhom);
-            bdsDanhBa.DataSource = list;
-            dgvDanhBa.DataSource = bdsDanhBa;
+            refreshList();
         }
 
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
@@ -86,7 +92,10 @@ namespace AppG12019
             {
                 string key = txtSearch.Text;
                 string tenNhom = (string)dgvNhom.CurrentCell.Value;
-                List<DanhBa> list = DanhBa.getDanhBaTheoNhom(tenNhom);
+                //Nhom nhom = Nhom.getNhomByName(tenNhom);
+                Nhom nhom = Nhom.getNhomFromDBByName(tenNhom);
+                //List<DanhBa> list = DanhBa.getDanhBaTheoNhom(nhom.maNhom);
+                List<DanhBa> list = DanhBa.getDanhBaFromDBTheoNhom(nhom.maNhom);
                 List<DanhBa> rs = new List<DanhBa>();
                 for (int i = 0; i < list.Count; i++)
                 {
@@ -101,7 +110,10 @@ namespace AppG12019
             if (txtSearch.Text.Equals(""))
             {
                 string tenNhom = (string)dgvNhom.CurrentCell.Value;
-                List<DanhBa> list = DanhBa.getDanhBaTheoNhom(tenNhom);
+                //Nhom nhom = Nhom.getNhomByName(tenNhom);
+                Nhom nhom = Nhom.getNhomFromDBByName(tenNhom);
+                //List<DanhBa> list = DanhBa.getDanhBaTheoNhom(nhom.maNhom);
+                List<DanhBa> list = DanhBa.getDanhBaFromDBTheoNhom(nhom.maNhom);
                 bdsDanhBa.DataSource = list;
                 dgvDanhBa.DataSource = bdsDanhBa;
             }
@@ -116,40 +128,57 @@ namespace AppG12019
         private void btnXoaNhom_Click(object sender, EventArgs e)
         {
             string tenNhomXoa = (string)dgvNhom.CurrentCell.Value;
-            string pathNhom = Application.StartupPath + @"/DATA/Nhom.txt";
-            string pathDanhBa = Application.StartupPath + @"/DATA/DanhBa.txt";
 
-            string[] linesNhom = File.ReadAllLines(pathNhom);
-            string[] linesDanhBa = File.ReadAllLines(pathDanhBa);
+            var nhom = Nhom.getNhomFromDBByName(tenNhomXoa);
+            DanhBa.xoaDanhBaByNhom(nhom.maNhom);
+            Nhom.xoaNhomFromDBByName(tenNhomXoa);
+            refreshList();
+            //string pathNhom = Application.StartupPath + @"/DATA/Nhom.txt";
+            //string pathDanhBa = Application.StartupPath + @"/DATA/DanhBa.txt";
 
-            File.WriteAllText(pathNhom, "");
-            File.WriteAllText(pathDanhBa, "");
+            //string[] linesNhom = File.ReadAllLines(pathNhom);
+            //string[] linesDanhBa = File.ReadAllLines(pathDanhBa);
 
-            string newline = System.Environment.NewLine;
-            for (int i = 0; i < linesNhom.Length; i++)
-            {
-                string[] temp = linesNhom[i].Split(new char[] { '#' });
-                if (!temp[1].Equals(tenNhomXoa))
-                {
-                    File.AppendAllText(pathNhom, linesNhom[i] + newline, Encoding.Unicode);
-                }
-            }
+            //File.WriteAllText(pathNhom, "");
+            //File.WriteAllText(pathDanhBa, "");
 
-            for (int i = 0; i < linesDanhBa.Length; i++)
-            {
-                string[] temp = linesDanhBa[i].Split(new char[] { '#' });
-                if (!temp[0].Equals(tenNhomXoa))
-                {
-                    File.AppendAllText(pathDanhBa, linesDanhBa[i] + newline, Encoding.Unicode);
-                }
-            }
-            List<Nhom> listNhom = Nhom.getNhom();
+            //string newline = System.Environment.NewLine;
+            //for (int i = 0; i < linesNhom.Length; i++)
+            //{
+            //    string[] temp = linesNhom[i].Split(new char[] { '#' });
+            //    if (!temp[1].Equals(tenNhomXoa))
+            //    {
+            //       File.AppendAllText(pathNhom, linesNhom[i] + newline, Encoding.Unicode);
+            //   }
+            //}
+
+            //for (int i = 0; i < linesDanhBa.Length; i++)
+            //// {
+            //    string[] temp = linesDanhBa[i].Split(new char[] { '#' });
+            //    if (!temp[0].Equals(tenNhomXoa))
+            //    {
+            //         File.AppendAllText(pathDanhBa, linesDanhBa[i] + newline, Encoding.Unicode);
+            //     }
+            // }
+
+        }
+
+        public void refreshList()
+        {
+            //List<Nhom> listNhom = Nhom.getNhom();
+            List<Nhom> listNhom = Nhom.getNhomFromDB();
             bdsNhom.DataSource = listNhom;
             dgvNhom.DataSource = bdsNhom;
-            string tenNhom = (string)dgvNhom.CurrentCell.Value;
-            List<DanhBa> list = DanhBa.getDanhBaTheoNhom(tenNhom);
-            bdsDanhBa.DataSource = list;
-            dgvDanhBa.DataSource = bdsDanhBa;
+            if (listNhom.Count > 0)
+            {
+                string tenNhom = (string)dgvNhom.CurrentCell.Value;
+                //Nhom nhom = Nhom.getNhomByName(tenNhom);
+                Nhom nhom = Nhom.getNhomFromDBByName(tenNhom);
+                //List<DanhBa> list = DanhBa.getDanhBaTheoNhom(nhom.maNhom);
+                List<DanhBa> list = DanhBa.getDanhBaFromDBTheoNhom(nhom.maNhom);
+                bdsDanhBa.DataSource = list;
+                dgvDanhBa.DataSource = bdsDanhBa;
+            }
         }
     }
 }

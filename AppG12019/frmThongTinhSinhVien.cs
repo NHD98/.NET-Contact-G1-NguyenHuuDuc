@@ -42,8 +42,8 @@ namespace AppG12019
             dgvQuaTrinhHocTap.AutoGenerateColumns = false;
 
 
-            //sinhVien = SinhVien.getFromFile(pathDataText, maSinhVien);
-            sinhVien = SinhVien.getFromDB(maSinhVien);
+            sinhVien = SinhVien.getFromFile(pathDataText, maSinhVien);
+          //  sinhVien = SinhVien.getFromDB(maSinhVien);
             if (sinhVien == null)
             {
                 throw new Exception("Sinh viên có mã " + maSinhVien + " không tồn tại");

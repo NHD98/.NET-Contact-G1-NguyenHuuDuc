@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.0-preview3-19553-01\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0-preview3-19553-01\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -40,10 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.0-preview2-19525-03\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.0-preview3-19553-01\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.0-preview2-19525-03\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.0-preview3-19553-01\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -77,9 +77,9 @@
     <Compile Include="ContactModify.Designer.cs">
       <DependentUpon>ContactModify.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Entity\AppG1DBContext.cs" />
     <Compile Include="DAL\Entity\Contact.cs" />
     <Compile Include="DAL\Entity\DanhBa.cs" />
+    <Compile Include="DAL\DanhBaDbContext.cs" />
     <Compile Include="DAL\Entity\Nhom.cs" />
     <Compile Include="DAL\Entity\QuaTrinhHocTap.cs" />
     <Compile Include="DAL\Entity\SinhVien.cs" />
@@ -107,9 +107,9 @@
     <Compile Include="frmTinhToanCoBan.Designer.cs">
       <DependentUpon>frmTinhToanCoBan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911110805080_abc.cs" />
-    <Compile Include="Migrations\201911110805080_abc.designer.cs">
-      <DependentUpon>201911110805080_abc.cs</DependentUpon>
+    <Compile Include="Migrations\201911240200554_DanhBa.cs" />
+    <Compile Include="Migrations\201911240200554_DanhBa.designer.cs">
+      <DependentUpon>201911240200554_DanhBa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -153,8 +153,8 @@
     <EmbeddedResource Include="frmTinhToanCoBan.resx">
       <DependentUpon>frmTinhToanCoBan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911110805080_abc.resx">
-      <DependentUpon>201911110805080_abc.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911240200554_DanhBa.resx">
+      <DependentUpon>201911240200554_DanhBa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -187,9 +187,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="DATA\Contact.txt" />
     <Content Include="DATA\dataStudent.txt" />
     <Content Include="DATA\learningHistory.txt" />
@@ -208,8 +205,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0-preview3-19553-01\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0-preview3-19553-01\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0-preview3-19553-01\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0-preview3-19553-01\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0-preview2-19525-03\build\EntityFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.0-preview3-19553-01\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0-preview3-19553-01\build\EntityFramework.targets')" />
 </Project>

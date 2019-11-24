@@ -12,7 +12,6 @@ namespace AppG12019.DAL.Entity
 {
     public class QuaTrinhHocTap
     {
-        [Key]
         public string maQuaTrinhHocTap { get; set; }
         public int tuNam { get; set; }
         public int denNam { get; set; }
@@ -26,7 +25,6 @@ namespace AppG12019.DAL.Entity
         public string hocTai { get; set; }
         
         public string maSinhVien { get; set; }
-        [ForeignKey("maSinhVien")]
         public virtual SinhVien SinhVien { get; set; }
 
         /// <summary>
@@ -90,12 +88,12 @@ namespace AppG12019.DAL.Entity
             // code
         }
 
-        public static List<QuaTrinhHocTap> getListFromDB(string maSinhVien)
-        {
-            return new AppG1DBContext().QuaTrinhHocTapDbSet.
-                Where(e => e.maSinhVien == maSinhVien).
-                OrderBy(e => e.tuNam).ToList();
-        }
+       // public static List<QuaTrinhHocTap> getListFromDB(string maSinhVien)
+      //  {
+       //     return new AppG1DBContext().QuaTrinhHocTapDbSet.
+        //        Where(e => e.maSinhVien == maSinhVien).
+       //         OrderBy(e => e.tuNam).ToList();
+        //}
 
     }
 }

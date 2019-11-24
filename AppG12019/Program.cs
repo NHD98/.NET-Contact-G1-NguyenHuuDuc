@@ -16,9 +16,9 @@ namespace AppG12019
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmThongTinhSinhVien("102"));
+            //Application.Run(new frmThongTinhSinhVien("102"));
             //Application.Run(new ContactApp());
-            //Application.Run(new QuanLiDanhBa());
+            Application.Run(new QuanLiDanhBa());
         }
     }
 }
